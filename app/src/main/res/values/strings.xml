@@ -15,4 +15,11 @@
     <string name="aсс_sing_out">Выход</string>
     <string name="open">Открыт</string>
     <string name="close">Закрыт</string>
+
+    <!--Sing Dialog-->
+    <string name="emailHint">Email</string>
+    <string name="passwordHint">Password</string>
+    <string name="sing_up_action">Зарегистрироваться</string>
+    <string name="sing_in_action">Войти</string>
+    <string name="forget_password">Забыли пароль?</string>
 </resources>
