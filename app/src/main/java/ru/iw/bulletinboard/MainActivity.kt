@@ -6,6 +6,9 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.FirebaseApp
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.core.Context
 import ru.iw.bulletinboard.databinding.ActivityMainBinding
 import ru.iw.bulletinboard.dialogs.DialogConst
 import ru.iw.bulletinboard.dialogs.DialogHelper
@@ -15,12 +18,18 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private lateinit var binding: ActivityMainBinding
     private val dialogHelper = DialogHelper(this)
 
+     val fireBaseAuth = FirebaseAuth.getInstance()
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
         init()
+
 
     }
 
