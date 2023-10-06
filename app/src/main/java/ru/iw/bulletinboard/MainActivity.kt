@@ -2,12 +2,15 @@ package ru.iw.bulletinboard
 
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.TextureView
+import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.core.Context
 import ru.iw.bulletinboard.databinding.ActivityMainBinding
 import ru.iw.bulletinboard.dialogs.DialogConst
@@ -15,11 +18,10 @@ import ru.iw.bulletinboard.dialogs.DialogHelper
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+    private lateinit var accountEmail: TextView
     private lateinit var binding: ActivityMainBinding
     private val dialogHelper = DialogHelper(this)
-
-     val fireBaseAuth = FirebaseAuth.getInstance()
-
+    val fireBaseAuth = FirebaseAuth.getInstance()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,6 +35,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     }
 
+    override fun onStart() {
+        super.onStart()
+        uiUpdate(fireBaseAuth.currentUser)
+    }
 
     private fun init() {
         val toggle =
@@ -46,6 +52,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         binding.drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
         binding.navView.setNavigationItemSelectedListener(this)
+//change text accountEmail on header
+        accountEmail = binding.navView.getHeaderView(0).findViewById(R.id.accountEmail)
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -73,10 +81,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 dialogHelper.showSingDialog(DialogConst.SING_IN_STATE)
             }
             R.id.id_sing_out -> {
-
+                uiUpdate(null)
+                fireBaseAuth.signOut()
             }
         }
         binding.drawerLayout.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    fun uiUpdate(user: FirebaseUser?) {
+        accountEmail.text = if (user == null) resources.getString(R.string.not_reg) else user.email
     }
 }

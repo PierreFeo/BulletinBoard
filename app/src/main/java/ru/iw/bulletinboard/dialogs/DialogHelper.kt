@@ -1,6 +1,7 @@
 package ru.iw.bulletinboard.dialogs
 
 import android.app.AlertDialog
+import android.util.Log
 import ru.iw.bulletinboard.MainActivity
 import ru.iw.bulletinboard.R
 import ru.iw.bulletinboard.accountHelper.AccountHelper
@@ -14,6 +15,7 @@ class DialogHelper(activity: MainActivity) {
         val builder = AlertDialog.Builder(classContext)
         val binding = SingDialogBinding.inflate(classContext.layoutInflater)
         val view = binding.root
+        builder.setView(view)
 
         when (indexButtonMenu) {
             DialogConst.SING_UP_STATE -> {
@@ -25,21 +27,28 @@ class DialogHelper(activity: MainActivity) {
                 binding.singInButton.text = classContext.getText(R.string.sing_in_action)
             }
         }
-
+        val dialog = builder.create()
         binding.singInButton.setOnClickListener {
+            dialog.dismiss()
             if (indexButtonMenu == DialogConst.SING_UP_STATE) {
+                //Sing up
                 accountHelper.singUpWithEmail(
-                    binding.enSingEmail.text.toString(),
-                    binding.enSingPassword.text.toString()
+                    binding.enSingEmail.text.toString().trim(),
+                    binding.enSingPassword.text.toString().trim()
                 )
             } else {
-                println()
+                //Sing in
+                accountHelper.singInWithEmail(
+                    binding.enSingEmail.text.toString().trim(),
+                    binding.enSingPassword.text.toString().trim()
+                )
+                Log.d("error auth", "${binding.enSingEmail}, ${binding.enSingPassword}")
             }
 
         }
 
-        builder.setView(view)
-        builder.show()
+
+        dialog.show()
     }
 
 

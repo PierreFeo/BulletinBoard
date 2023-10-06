@@ -15,6 +15,7 @@
     <string name="aсс_sing_out">Выход</string>
     <string name="open">Открыт</string>
     <string name="close">Закрыт</string>
+    <string name="not_reg">Войдите или зарегестируйтесь</string>
 
     <!--Sing Dialog-->
     <string name="emailHint">Email</string>
@@ -23,6 +24,7 @@
     <string name="sing_in_action">Войти</string>
     <string name="forget_password">Забыли пароль?</string>
     <string name="sing_up_error">Не удалось зарегестироваться</string>
+    <string name="sing_in_error">Не удалось войти</string>
     <string name="send_verification_email_error">Не удалось отправить письмо для подтверждения</string>
     <string name="send_verification_email_done">На вашу почту была отправлена ссылка для подтверждения</string>
 </resources>
