@@ -19,6 +19,8 @@
 
     <!--Sing Dialog-->
     <string name="emailHint">Email</string>
+    <string name="email_reset_pass_was_sent">Письмо для сброса пароля отправлено на ваш email</string>
+    <string name="dialog_reset_email_massage">Для востановления пароля укажите email</string>
     <string name="passwordHint">Password</string>
     <string name="sing_up_action">Зарегистрироваться</string>
     <string name="sing_in_action">Войти</string>
@@ -27,4 +29,6 @@
     <string name="sing_in_error">Не удалось войти</string>
     <string name="send_verification_email_error">Не удалось отправить письмо для подтверждения</string>
     <string name="send_verification_email_done">На вашу почту была отправлена ссылка для подтверждения</string>
+    <string name="send_button">Отправить</string>
+    <string name="do_not_empty_email">Поле email не может быть пустым</string>
 </resources>
